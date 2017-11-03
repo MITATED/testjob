@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Редактировать пост
+{% endblock %}
+
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        {{ form.media }}
+        <div class="text-right">
+            <input type="submit" class="btn btn-primary" value="Опубликовать"/>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ post.post_name }}
+{% endblock %}
+
+{% block content %}
+    {% if is_post_this_user %}
+        <div class="container">
+            <div class="row text-right">
+                <a class="btn btn-default" href="{% url 'blog:post_update' post.id %}" type="button">Редактировать</a>
+            </div>
+        </div>
+    {% endif %}
+    <div class="container">
+        <div class="row">
+            <h1>{{ post.post_name }}</h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            {% autoescape off %}{{ post.post_text }}{% endautoescape %}
+        </div>
+    </div>
+    {% if is_post_this_user %}
+        <div class="container">
+            <div class="row text-right">
+                <a class="btn btn-default" href="{% url 'blog:post_update' post.id %}" type="button">Редактировать</a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

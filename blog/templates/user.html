@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ user_object.username }}
+{% endblock %}
+
+
+{% block content %}
+    <div class="panel-group" id="accordion">
+        {% for post_one_user in posts_one_user %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-8 col-sm-8">
+                                    <button type="button" class="btn btn-default btn-xs"
+                                            href="#collapse-{{ post_one_user.id }}"
+                                            data-parent="#accordion"
+                                            data-toggle="collapse">
+                                        <i class="fa fa-angle-double-down"></i>
+                                    </button>
+                                    <a href="{% url 'blog:post_detail' post_one_user.id %}">
+                                        {{ post_one_user.post_name }}
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </h4>
+                </div>
+                <div class="panel-collapse collapse" id="collapse-{{ post_one_user.id }}">
+                    <div class="thumbnail">
+                        <div class="container">
+                            <p>{{ post_one_user.post_text|safe }}</p>
+                        </div>
+                    </div>
+                    <div class="panel-footer text-right">
+                        <a href="{% url 'blog:post_detail' post_one_user.id %}" class="all_posts_user">Посмотреть пост</a>
+                    </div>
+                </div>
+
+            </div>
+        {% endfor %}
+        {% if is_paginated %}
+            <ul class="pager">
+                <li class="previous {% if not page_obj.has_previous %}disabled{% endif %}">
+                    <a href="{% url 'blog:user_posts' user_object.id %}{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% endif %}">
+                        ← Предыдущая
+                    </a>
+                </li>
+                <li class="page-current">
+                    Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+                </li>
+                <li class="next {% if not page_obj.has_next %}disabled{% endif %}">
+                    <a href="{% url 'blog:user_posts' user_object.id %}{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% endif %}">
+                        Следующая →
+                    </a>
+                </li>
+            </ul>
+        {% endif %}
+    </div>
+
+{% endblock %}

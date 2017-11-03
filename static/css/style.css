@@ -1,0 +1,35 @@
+body {
+    padding-top: 90px;
+}
+
+.back {
+    position: absolute;
+    top: 55px;
+    left: 0;
+}
+
+.all_posts_user {
+    font-size: 80%;
+    margin: 0;
+}
+
+/*.post-prev {*/
+/*display: grid;*/
+/*!*grid-template-rows: 1fr;*!*/
+/*grid-template-columns: repeat(3, 1fr);*/
+/*grid-template-rows: 50px;*/
+/*grid-column-gap: 10px;*/
+/*grid-auto-rows: auto;*/
+/*}*/
+/*.post-prev::before {*/
+/*display: none;*/
+/*}*/
+
+/*.user_username{*/
+/*grid-column: 1/-1;*/
+/*font-weight:bold;*/
+/*}*/
+
+.user_count, .user_username {
+    font-size: x-large;
+}
